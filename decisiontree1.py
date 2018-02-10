@@ -1,11 +1,15 @@
 from sklearn import tree
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 
-clf = tree.DecisionTreeClassifier()
 
-# CHALLENGE - create 3 more classifiers...
-# 1
-# 2
-# 3
+
+
+# Decision Tree Classifier
+
+clf1 = tree.DecisionTreeClassifier()
 
 # [height, weight, shoe_size]
 X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
@@ -15,12 +19,50 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
 Y = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
      'female', 'male', 'male']
 
+clf1.fit(X, Y)
 
-# CHALLENGE - ...and train them on our data
-clf = clf.fit(X, Y)
+prediction1 = clf1.predict([[190, 70, 43]])
 
-prediction = clf.predict([[190, 70, 43]])
+print("\nDecision Tree Classifier: \t", prediction1)
+# Naive Bayes classifier
 
-# CHALLENGE compare their reusults and print the best one!
+clf2 = GaussianNB()
 
-print(prediction)
+clf2.fit(X,Y)
+
+prediction2 = clf2.predict([[190, 70, 43]])
+
+print("Navie Bayes Classifier: \t", prediction2)
+
+# K Nearest Neighbors
+
+clf3 = KNeighborsClassifier(n_neighbors=3)
+
+clf3.fit(X,Y)
+
+prediction3 = clf3.predict([[190, 70, 43]])
+
+print("K Nearest Neighbors Classifier: \t", prediction3)
+
+# Logistic Regression
+
+clf4 = LogisticRegression()
+
+clf4.fit(X, Y)
+
+prediction4 = clf4.predict([[190, 70, 43]])
+
+print("Logistic Regression Classifier: \t", prediction4)
+
+# Random Forest
+
+clf5 = RandomForestClassifier(n_estimators=2)
+
+clf5.fit(X, Y)
+
+prediction5 = clf5.predict([[190, 70, 43]])
+
+print("Random Forest Classifier: \t", prediction5)
+
+
+
